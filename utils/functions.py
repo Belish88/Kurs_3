@@ -1,17 +1,19 @@
 import json
 
+from setting.path import JSON
+
 
 def open_file(path):
     with open(path) as load_file:
         return json.loads(load_file.read())
 
 
-# def data_output():
-#     operations = open_file(JSON)
-#     for data in operations:
-#         return (f'{data["date"]} '
-#                 f'{data["description"]}\n'
-#                 f'{data["from"]} -> '
-#                 f'{data["to"]}\n'
-#                 f'{data["operationAmount"]["amount"]} '
-#                 f'{data["operationAmount"]["currency"]["name"]}\n')
+def filter_executed(data):
+    executed_operation = []
+    for operation in data:
+        if operation.get("state") == "EXECUTED":
+            executed_operation.append(operation)
+    return executed_operation
+
+
+# print(filter_executed(open_file(JSON)))
