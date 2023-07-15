@@ -16,11 +16,11 @@ def filter_executed(data):
     return executed_operation
 
 
-def new_operation(executed_operation):
+def five_new_operation_sorted_for_date(executed_operation):
     sorted_date = list(sorted(executed_operation,
                               key=lambda operation: operation["date"],
                               reverse=True))[:5]
     return sorted_date
 
 
-print(new_operation(filter_executed(open_file(JSON))))
+print(five_new_operation_sorted_for_date(filter_executed(open_file(JSON))))
