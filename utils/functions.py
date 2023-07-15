@@ -29,6 +29,21 @@ def norm_format_date(date):
     return datetime.datetime.strftime(date_, '%d.%m.%Y')
 
 
+def convert_from_to(data):
+    if data.startswith('Счет'):
+        return data[0:5] + "**" + data[-4:]
+    else:
+        name = ""
+        numer = ""
+        for i in data:
+            if '0' <= i <= '9':
+                numer += i
+            else:
+                name += i
+        return f'{name}{numer[0:4]} {numer[4:6]}** **** {numer[-4:]}'
+
 
 # print(five_new_operation_sorted_for_date(filter_executed(open_file(JSON))))
 # print(norm_format_date("2019-08-26T10:50:58.294041"))
+# print(covert_from_to("Счет 35383033474447895560"))
+# print(covert_from_to("MasterCard 7158300734726758"))
