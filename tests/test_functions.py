@@ -1,8 +1,9 @@
 import pytest
 
 from setting.path import JSON
+from tests.conftest import fixture_one_executed
 from utils.functions import open_file, filter_executed, norm_format_date, five_new_operation_sorted_for_date, \
-    convert_from_to
+    convert_from_to, result_data
 
 
 def test_open_file():
@@ -29,3 +30,11 @@ def test_five_new_operation_sorted_for_date(fixture_five_new_operation):
 def test_convert_from_to():
     assert convert_from_to("Счет 35383033474447895560") == "Счет **5560"
     assert convert_from_to("Visa Platinum 1246377376343588") == "Visa Platinum 1246 37** **** 3588"
+
+
+def test_result_data(fixture_one_executed):
+    assert result_data(fixture_one_executed[0]) == "08.12.2019 Открытие вклада\n" \
+                                                   " -> Счет **5907\n" \
+                                                   "41096.24 USD\n"
+
+
