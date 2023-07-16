@@ -43,7 +43,21 @@ def convert_from_to(data):
         return f'{name}{numer[0:4]} {numer[4:6]}** **** {numer[-4:]}'
 
 
+def result_data(data):
+    date_ = norm_format_date(data["date"])
+    description_ = data["description"]
+    from_ = convert_from_to(data["from"]) if data.get("from") else ""
+    to_ = convert_from_to(data["to"])
+    amount_ = data["operationAmount"]["amount"]
+    name_ = data["operationAmount"]["currency"]["name"]
+    return f'{date_} {description_}\n' \
+           f'{from_} -> {to_}\n' \
+           f'{amount_} {name_}\n'
+
+
 # print(five_new_operation_sorted_for_date(filter_executed(open_file(JSON))))
 # print(norm_format_date("2019-08-26T10:50:58.294041"))
 # print(covert_from_to("Счет 35383033474447895560"))
 # print(covert_from_to("MasterCard 7158300734726758"))
+# for operation in five_new_operation_sorted_for_date(filter_executed(open_file(JSON))):
+#     print(result_data(operation))
