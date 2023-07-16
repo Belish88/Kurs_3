@@ -17,7 +17,7 @@ def filter_executed(data):
 
 def five_new_operation_sorted_for_date(executed_operation):
     sorted_date = list(sorted(executed_operation,
-                              key=lambda operation: operation["date"],
+                              key=lambda operation: operation['date'],
                               reverse=True))[:5]
     return sorted_date
 
