@@ -1,7 +1,8 @@
 import pytest
 
 from setting.path import JSON
-from utils.functions import open_file, filter_executed, norm_format_date, five_new_operation_sorted_for_date
+from utils.functions import open_file, filter_executed, norm_format_date, five_new_operation_sorted_for_date, \
+    convert_from_to
 
 
 def test_open_file():
@@ -22,3 +23,8 @@ def test_norm_format_date():
 
 def test_five_new_operation_sorted_for_date():
     assert len(five_new_operation_sorted_for_date(filter_executed(open_file(JSON)))) == 5
+
+
+def test_convert_from_to():
+    assert convert_from_to("Счет 35383033474447895560") == "Счет **5560"
+    assert convert_from_to("Visa Platinum 1246377376343588") == "Visa Platinum 1246 37** **** 3588"
