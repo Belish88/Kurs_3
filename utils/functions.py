@@ -1,8 +1,6 @@
 import datetime
 import json
 
-from setting.path import JSON
-
 
 def open_file(path):
     with open(path) as load_file:
