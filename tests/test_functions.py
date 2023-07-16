@@ -21,8 +21,9 @@ def test_norm_format_date():
     assert norm_format_date("2019-12-08T22:46:21.935582") == "08.12.2019"
 
 
-def test_five_new_operation_sorted_for_date():
+def test_five_new_operation_sorted_for_date(fixture_five_new_operation):
     assert len(five_new_operation_sorted_for_date(filter_executed(open_file(JSON)))) == 5
+    assert five_new_operation_sorted_for_date(filter_executed(open_file(JSON))) == fixture_five_new_operation
 
 
 def test_convert_from_to():
