@@ -1,7 +1,7 @@
 import pytest
 
 from setting.path import JSON
-from utils.functions import open_file, filter_executed
+from utils.functions import open_file, filter_executed, norm_format_date
 
 
 def test_open_file():
@@ -16,3 +16,5 @@ def test_filter_executed(fixture_filter_executed, fixture_one_executed):
     assert filter_executed(fixture_filter_executed) == fixture_one_executed
 
 
+def test_norm_format_date():
+    assert norm_format_date("2019-12-08T22:46:21.935582") == "08.12.2019"
