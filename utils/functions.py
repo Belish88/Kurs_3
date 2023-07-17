@@ -1,15 +1,23 @@
 import datetime
 import json
 
-from setting.path import JSON
-
 
 def open_file(path):
+    """
+    Open file json
+    :param path: path file json
+    :return: file for python
+    """
     with open(path) as load_file:
         return json.loads(load_file.read())
 
 
 def filter_executed(data):
+    """
+    filters executed operations
+    :param data: data operations
+    :return: data executed operations
+    """
     executed_operation = []
     for operation in data:
         if operation.get("state") == "EXECUTED":
@@ -18,6 +26,11 @@ def filter_executed(data):
 
 
 def five_new_operation_sorted_for_date(executed_operation):
+    """
+    finds five new operations and sorted for date
+    :param executed_operation: list executed operations
+    :return: five new operstions
+    """
     sorted_date = list(sorted(executed_operation,
                               key=lambda operation: operation['date'],
                               reverse=True))[:5]
@@ -25,11 +38,21 @@ def five_new_operation_sorted_for_date(executed_operation):
 
 
 def norm_format_date(date):
+    """
+    converted date for normal format
+    :param date: date is data
+    :return: normal format date
+    """
     date_ = datetime.datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%f")
     return datetime.datetime.strftime(date_, '%d.%m.%Y')
 
 
 def convert_from_to(data):
+    """
+    converted from and to
+    :param data: data from and data to
+    :return: from and to in new format
+    """
     if data.startswith('Счет'):
         return data[0:5] + "**" + data[-4:]
     else:
@@ -44,6 +67,11 @@ def convert_from_to(data):
 
 
 def result_data(data):
+    """
+    displays result data
+    :param data: data operations
+    :return: data in new format
+    """
     date_ = norm_format_date(data["date"])
     description_ = data["description"]
     from_ = convert_from_to(data["from"]) if data.get("from") else ""
@@ -53,11 +81,3 @@ def result_data(data):
     return f'{date_} {description_}\n' \
            f'{from_} -> {to_}\n' \
            f'{amount_} {name_}\n'
-
-
-# print(five_new_operation_sorted_for_date(filter_executed(open_file(JSON))))
-# print(norm_format_date("2019-08-26T10:50:58.294041"))
-# print(covert_from_to("Счет 35383033474447895560"))
-# print(covert_from_to("MasterCard 7158300734726758"))
-# for operation in five_new_operation_sorted_for_date(filter_executed(open_file(JSON))):
-#     print(result_data(operation))
