@@ -1,7 +1,6 @@
 import pytest
 
 from setting.path import JSON
-from tests.conftest import fixture_one_executed
 from utils.functions import open_file, filter_executed, norm_format_date, five_new_operation_sorted_for_date, \
     convert_from_to, result_data
 
